@@ -33,7 +33,7 @@ public class D2 {
         }
         System.out.println(ans);
     }
-
+//sdf
     private static boolean isSafe(List<Integer> integers) {
         boolean isIncreasing = true;
         boolean safe = true;
