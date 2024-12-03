@@ -18,29 +18,28 @@ public class D3 {
             throw new RuntimeException(e);
         }
 
-        String nextRegex = "mul\\(\\d+,\\d+\\)|do\\(\\)|don't\\(\\)";
+        String nextRegex = "mul\\(\\d{1,3},\\d{1,3}\\)|do\\(\\)|don't\\(\\)";
         String innerRegex = "\\d+";
 
         Pattern nextPattern = Pattern.compile(nextRegex);
         Pattern innerPattern = Pattern.compile(innerRegex);
 
-        List<String> nextResults = new ArrayList<>();
+        List<String> validInstructions = new ArrayList<>();
         int sum = 0;
-        boolean flag = false; // Initially no multiplication allowed
+        boolean flag = true;
 
         for (String line : lines) {
             Matcher nextMatcher = nextPattern.matcher(line);
 
             while (nextMatcher.find()) {
                 String match = nextMatcher.group();
-                nextResults.add(match);
+                validInstructions.add(match);
 
                 if (match.equals("do()")) {
-                    flag = true; // Allow multiplication and addition
+                    flag = true;
                 } else if (match.equals("don't()")) {
-                    flag = false; // Stop adding
+                    flag = false;
                 } else if (match.startsWith("mul(") && flag) {
-                    // Process multiplication only if flag is true
                     Matcher innerMatcher = innerPattern.matcher(match);
                     List<Integer> tempList = new ArrayList<>();
                     while (innerMatcher.find()) {
@@ -53,12 +52,10 @@ public class D3 {
             }
         }
 
-        // Print all matches
-        for (String nextResult : nextResults) {
-            System.out.println(nextResult);
+        for (String instruction : validInstructions) {
+            System.out.println(instruction);
         }
 
-        // Print the sum of mul(number,number) products
-        System.out.println("Sum: " + sum);
+        System.out.println(sum);
     }
 }
