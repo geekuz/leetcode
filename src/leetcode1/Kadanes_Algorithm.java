@@ -11,4 +11,8 @@ public class Kadanes_Algorithm {
 
         return maxSum;
     }
+
+    public static void main(String[] args) {
+
+    }
 }
