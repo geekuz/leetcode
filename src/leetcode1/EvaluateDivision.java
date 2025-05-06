@@ -14,7 +14,6 @@ public class EvaluateDivision {
 
             graph.putIfAbsent(A, new HashMap<>());
             graph.putIfAbsent(B, new HashMap<>());
-
             graph.get(A).put(B, value);
             graph.get(B).put(A, 1.0 / value);
         }
