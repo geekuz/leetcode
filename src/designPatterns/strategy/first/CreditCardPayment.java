@@ -1,4 +1,4 @@
-package designPatterns.strategy;
+package designPatterns.strategy.first;
 
 public class CreditCardPayment implements PaymentStrategy{
     @Override
